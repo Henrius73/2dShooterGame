@@ -1,0 +1,32 @@
+[gd_scene load_steps=5 format=3 uid="uid://dq3hfw44sw133"]
+
+[ext_resource type="Script" path="res://Script/enemy.cs" id="1_dqseb"]
+[ext_resource type="Texture2D" uid="uid://bed0b32t11lqw" path="res://Sprites/skeleton-attack_0.png" id="2_qqywl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_k345p"]
+radius = 23.3452
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_qrfrj"]
+radius = 38.0789
+
+[node name="Enemy" type="CharacterBody2D"]
+motion_mode = 1
+script = ExtResource("1_dqseb")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_k345p")
+
+[node name="Skeleton-attack0" type="Sprite2D" parent="."]
+position = Vector2(-7.10543e-15, -1)
+scale = Vector2(0.4, 0.4)
+texture = ExtResource("2_qqywl")
+
+[node name="AttackRange" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="AttackRange"]
+position = Vector2(0, -1)
+shape = SubResource("CircleShape2D_qrfrj")
+
+[connection signal="body_entered" from="AttackRange" to="." method="OnAttackRangeBodyEnter"]
+[connection signal="body_exited" from="AttackRange" to="." method="OnAttackRangeBodyExit"]

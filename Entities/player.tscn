@@ -1,0 +1,28 @@
+[gd_scene load_steps=6 format=3 uid="uid://dk4yaqtfujv7c"]
+
+[ext_resource type="Script" path="res://Script/player.cs" id="1_a4kku"]
+[ext_resource type="Texture2D" uid="uid://bi7f76lmpcijk" path="res://Sprites/survivor-shoot_shotgun_0.png" id="2_6teq0"]
+[ext_resource type="Script" path="res://Script/Gun.cs" id="3_h74nc"]
+[ext_resource type="PackedScene" uid="uid://dt0cbk4qoqiet" path="res://Entities/bullet.tscn" id="4_cdtwb"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1gpfh"]
+radius = 37.5
+height = 138.0
+
+[node name="Player" type="CharacterBody2D" groups=["player"]]
+script = ExtResource("1_a4kku")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(1, 6.5)
+rotation = 1.5708
+shape = SubResource("CapsuleShape2D_1gpfh")
+
+[node name="GFX" type="Sprite2D" parent="."]
+position = Vector2(3, 5.75)
+scale = Vector2(0.512821, 0.444175)
+texture = ExtResource("2_6teq0")
+
+[node name="Gun" type="Node2D" parent="."]
+position = Vector2(80, 27)
+script = ExtResource("3_h74nc")
+bullet_scn = ExtResource("4_cdtwb")
