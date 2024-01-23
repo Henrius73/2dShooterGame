@@ -1,0 +1,50 @@
+[gd_scene load_steps=6 format=3 uid="uid://ck2m7wl03q2dw"]
+
+[ext_resource type="PackedScene" uid="uid://dk4yaqtfujv7c" path="res://Entities/player.tscn" id="1_hnmlx"]
+[ext_resource type="Script" path="res://Script/Spawner.cs" id="2_hqifs"]
+[ext_resource type="PackedScene" uid="uid://dq3hfw44sw133" path="res://Entities/enemy.tscn" id="3_mcjop"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e8ffb"]
+size = Vector2(1248, 32)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_740r4"]
+size = Vector2(32, 729.313)
+
+[node name="Main game" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_hnmlx")]
+position = Vector2(601, 406)
+
+[node name="EnemySpawn" type="Node2D" parent="." node_paths=PackedStringArray("spawn_poitns")]
+script = ExtResource("2_hqifs")
+enemy_scn = ExtResource("3_mcjop")
+spawn_poitns = [NodePath("SpawnPoint2"), NodePath("SpawnPoint3"), NodePath("SpawnPoint"), NodePath("SpawnPoint4")]
+
+[node name="SpawnPoint" type="Node2D" parent="EnemySpawn"]
+
+[node name="SpawnPoint2" type="Node2D" parent="EnemySpawn"]
+position = Vector2(1216, 0)
+
+[node name="SpawnPoint3" type="Node2D" parent="EnemySpawn"]
+position = Vector2(1216, 736)
+
+[node name="SpawnPoint4" type="Node2D" parent="EnemySpawn"]
+position = Vector2(0, 736)
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(608, -32)
+shape = SubResource("RectangleShape2D_e8ffb")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(608, 768)
+shape = SubResource("RectangleShape2D_e8ffb")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(-32, 364.656)
+shape = SubResource("RectangleShape2D_740r4")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(1264, 358.688)
+shape = SubResource("RectangleShape2D_740r4")
